@@ -25,14 +25,7 @@ const modules = [
 const appRoutes: Routes = [
 	...modules.map((module) => ({
 		path: module.path,
-		loadChildren: () => {
-			return System.import(module.moduleId).then((m: any) => {
-				if (module.moduleId.indexOf('@') === 0) {
-					return m[module.moduleId.split('/')[1]][module.moduleClass];
-				}
-				return m[module.moduleClass];
-			});
-		}
+		loadChildren: () => System.import(module.moduleId).then((m: any) => m[module.moduleClass])
 	})),
 	{
 		path: '',
