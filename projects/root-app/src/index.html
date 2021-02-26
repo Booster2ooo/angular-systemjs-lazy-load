@@ -6,12 +6,16 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <script type="text/javascript" src="/root/system.min.js"></script>
+  <!--<script type="text/javascript" src="/system.min.js"></script>-->
   <script type="systemjs-importmap">
     {
       "imports": {
-        "a-remote-module": "https://someserver.com/modules/a-remote-module.umd.min.js",
-        "@a-scope/another-remote-module": "https://someserver.com/modules/a-scope-another-remote-module.umd.min.js"
+        "@angular/core": "app:@angular/core",
+        "@angular/common": "app:@angular/common",
+        "@angular/router": "app:@angular/router",
+
+        "a-remote-module": "http://someserver.com/modules/a-remote-module.umd.min.js",
+        "@a-scope/another-remote-module": "http://someserver.com/modules/a-scope-another-remote-module.umd.min.js"
       }
     }
   </script>
