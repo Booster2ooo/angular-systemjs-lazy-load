@@ -1,27 +1,35 @@
-# AngularRemoteModule
+# Angular lazy loading with SystemJS
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.4.
+Reproduction steps:
 
-## Development server
+1. Adapt index.html
+- change the path to system.min.js in head
+```
+  <script type="text/javascript" src="/root/system.min.js"></script>
+```
+2. change the importmap addresses with yours
+```
+  <script type="systemjs-importmap">
+    {
+      "imports": {
+        "a-remote-module": "https://someserver.com/modules/a-remote-module.umd.min.js",
+        "@a-scope/another-remote-module": "https://someserver.com/modules/a-scope-another-remote-module.umd.min.js"
+      }
+    }
+  </script>
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+2. Build modules & deploy
+```
+ng b a-remote-module
+ng b @a-scope/another-remote-module
+```
 
-## Code scaffolding
+Host the files `dist/a-remote-module/bundles/a-remote-module.umd.min.js` and `dist/a-scope/another-remote-module/bundles/a-scope-another-remote-module.umd.min.js` so they are accessible via the configured urls in the importmap (`https://someserver.com/modules/...`)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+3. Build app & deploy
+```
+ng b root-app --base-href /root/
+```
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Host the app. I do host my app in a `/root/` folder, thus the need to prefix the system js script src in the index.htmk and use --base-href when building the app.

@@ -2,6 +2,16 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths": {
+      "@a-scope/another-remote-module": [
+        "dist/a-scope/another-remote-module/a-scope-another-remote-module",
+        "dist/a-scope/another-remote-module"
+      ],
+      "a-remote-module": [
+        "dist/a-remote-module/a-remote-module",
+        "dist/a-remote-module"
+      ]
+    },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
