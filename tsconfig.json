@@ -10,6 +10,10 @@
       "a-remote-module": [
         "dist/a-remote-module/a-remote-module",
         "dist/a-remote-module"
+      ],
+      "components-library": [
+        "dist/components-library/components-library",
+        "dist/components-library"
       ]
     },
     "baseUrl": "./",
